@@ -5,6 +5,10 @@ public class Node {
     public Node l;
     public Node r;
 
+    public Node(long key){
+        k=key;
+    }
+
     public long size() {
         long ls = 0;
         long rs = 0;

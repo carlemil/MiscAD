@@ -1,3 +1,4 @@
+
 package se.kjellstrand.bst.test;
 
 import org.junit.After;
@@ -25,9 +26,45 @@ public class TestBSTInsert {
 
     @Test
     public void insertOneNode() {
-        bstTree.insert(new Node());
+        bstTree.insert(new Node(1));
         long size = bstTree.size();
         Assert.assertEquals(1, size);
+    }
+
+    @Test
+    public void insertManyNodes1() {
+        bstTree.insert(new Node(1));
+        bstTree.insert(new Node(3));
+        bstTree.insert(new Node(5));
+        bstTree.insert(new Node(4));
+        bstTree.insert(new Node(2));
+        bstTree.insert(new Node(6));
+        bstTree.insert(new Node(7));
+
+        long size = bstTree.size();
+        Assert.assertEquals(7, size);
+    }
+
+    @Test
+    public void getInorder() {
+        bstTree.insert(new Node(1));
+        bstTree.insert(new Node(3));
+        bstTree.insert(new Node(5));
+        bstTree.insert(new Node(4));
+        bstTree.insert(new Node(2));
+        bstTree.insert(new Node(6));
+        bstTree.insert(new Node(7));
+
+        long[] list = bstTree.getInOrderListOfKeys();
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i < list.length; i++) {
+            sb.append(list[i]+", ");
+        }
+        System.out.println(sb);
+        for (int i = 1; i < list.length; i++) {
+            Assert.assertEquals(i, list[i]);
+        }
     }
 
 }

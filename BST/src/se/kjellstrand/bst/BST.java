@@ -1,3 +1,4 @@
+
 package se.kjellstrand.bst;
 
 public class BST {
@@ -31,6 +32,25 @@ public class BST {
 
     public long size() {
         return root.size();
+    }
+
+    public long[] getInOrderListOfKeys() {
+
+        long[] list = new long[(int) size()];
+        getInorderListOfKeys(list, root, 0);
+        return null;
+    }
+
+    private int getInorderListOfKeys(long[] list, Node node, int i) {
+        if (node.l != null) {
+            i = getInorderListOfKeys(list, node.l, i);
+        }
+        list[i] = node.k;
+        i++;
+        if (node.r != null) {
+            i = getInorderListOfKeys(list, node.r, i);
+        }
+        return i;
     }
 
 }

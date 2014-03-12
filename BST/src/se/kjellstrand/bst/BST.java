@@ -1,6 +1,8 @@
 
 package se.kjellstrand.bst;
 
+import java.util.ArrayList;
+
 public class BST {
 
     private Node root;
@@ -27,30 +29,65 @@ public class BST {
                 insert(current.r, node);
             }
         }
-
     }
 
-    public long size() {
-        return root.size();
+    public Node find(int key) {
+        return find(root, key);
     }
 
-    public long[] getInOrderListOfKeys() {
-
-        long[] list = new long[(int) size()];
-        getInorderListOfKeys(list, root, 0);
+    private Node find(Node node, int key) {
+        if (node == null) {
+            return null;
+        }
+        if (node.k == key) {
+            return node;
+        } else if (node.k > key) {
+            return find(node.l, key);
+        } else if (node.k < key) {
+            return find(node.r, key);
+        }
         return null;
     }
 
-    private int getInorderListOfKeys(long[] list, Node node, int i) {
+    public void delete(int key) {
+
+    }
+
+    public int size() {
+        return root.size();
+    }
+
+    public ArrayList<Integer> getInOrderListOfKeys() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        getInorderListOfKeys(list, root);
+        return list;
+    }
+
+    private void getInorderListOfKeys(ArrayList<Integer> list, Node node) {
         if (node.l != null) {
-            i = getInorderListOfKeys(list, node.l, i);
+            getInorderListOfKeys(list, node.l);
         }
-        list[i] = node.k;
-        i++;
+        list.add(node.k);
         if (node.r != null) {
-            i = getInorderListOfKeys(list, node.r, i);
+            getInorderListOfKeys(list, node.r);
         }
-        return i;
+    }
+
+    public ArrayList<Integer> getPreOrderListOfKeys() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        getPreOrderListOfKeys(list, root);
+        return list;
+    }
+
+    private void getPreOrderListOfKeys(ArrayList<Integer> list, Node node) {
+        list.add(node.k);
+
+        if (node.l != null) {
+            getPreOrderListOfKeys(list, node.l);
+        }
+        if (node.r != null) {
+            getPreOrderListOfKeys(list, node.r);
+        }
     }
 
 }

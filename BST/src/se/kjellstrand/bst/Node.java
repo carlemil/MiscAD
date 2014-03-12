@@ -1,17 +1,17 @@
 package se.kjellstrand.bst;
 
 public class Node {
-    public long k;
+    public int k;
     public Node l;
     public Node r;
 
-    public Node(long key){
+    public Node(int key){
         k=key;
     }
 
-    public long size() {
-        long ls = 0;
-        long rs = 0;
+    public int size() {
+        int ls = 0;
+        int rs = 0;
         if (l != null) {
             ls = l.size();
         }

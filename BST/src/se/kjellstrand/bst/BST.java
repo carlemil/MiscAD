@@ -139,4 +139,21 @@ public class BST {
         }
     }
 
+    public ArrayList<Integer> getPostOrderListOfKeys() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        getPostOrderListOfKeys(list, root);
+        return list;
+    }
+
+    private void getPostOrderListOfKeys(ArrayList<Integer> list, Node node) {
+        if (node.getLeft() != null) {
+            getPostOrderListOfKeys(list, node.getLeft());
+        }
+        if (node.getRight() != null) {
+            getPostOrderListOfKeys(list, node.getRight());
+        }
+
+        list.add(node.getKey());
+    }
+
 }

@@ -47,7 +47,7 @@ public class TestBSTInsert {
     }
 
     @Test
-    public void getInorder() {
+    public void getInOrder() {
         ArrayList<Integer> list = bstTree.getInOrderListOfKeys();
         Integer[] keys = list.toArray(new Integer[0]);
         Assert.assertArrayEquals(new Integer[] {
@@ -56,11 +56,20 @@ public class TestBSTInsert {
     }
 
     @Test
-    public void getPreorder() {
+    public void getPreOrder() {
         ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
         Integer[] keys = list.toArray(new Integer[0]);
         Assert.assertArrayEquals(new Integer[] {
                 3, 1, 2, 5, 4, 7, 6
+        }, keys);
+    }
+
+    @Test
+    public void getPostOrder() {
+        ArrayList<Integer> list = bstTree.getPostOrderListOfKeys();
+        Integer[] keys = list.toArray(new Integer[0]);
+        Assert.assertArrayEquals(new Integer[] {
+                2, 1, 4, 6, 7, 5, 3
         }, keys);
     }
 

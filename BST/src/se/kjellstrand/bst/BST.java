@@ -50,9 +50,17 @@ public class BST {
     }
 
     public void delete(int key) {
+        Node node = find(key);
         // Deleting a leaf (node with no children): Deleting a leaf is easy, as
         // we can simply remove it from the tree.
-
+        if (node.getLeft() == null && node.getRight() == null) {
+            Node parent = node.getParent();
+            if (parent.getLeft() != null && parent.getLeft().equals(node)) {
+                parent.setLeft(null);
+            } else {
+                parent.setRight(null);
+            }
+        }
         // Deleting a node with one child: Remove the node and replace it with
         // its child.
 

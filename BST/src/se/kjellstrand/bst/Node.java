@@ -1,12 +1,16 @@
+
 package se.kjellstrand.bst;
 
 public class Node {
     private int key;
+
     private Node left;
+
     private Node right;
+
     private Node parent;
 
-    public Node(int key){
+    public Node(int key) {
         setKey(key);
     }
 
@@ -36,7 +40,9 @@ public class Node {
 
     public void setLeft(Node l) {
         this.left = l;
-        this.left.setParent(this);
+        if (this.left != null) {
+            this.left.setParent(this);
+        }
     }
 
     public Node getRight() {
@@ -45,7 +51,9 @@ public class Node {
 
     public void setRight(Node r) {
         this.right = r;
-        this.right.setParent(this);
+        if (this.right != null) {
+            this.right.setParent(this);
+        }
     }
 
     public Node getParent() {

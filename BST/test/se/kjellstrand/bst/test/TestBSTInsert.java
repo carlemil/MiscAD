@@ -35,7 +35,6 @@ public class TestBSTInsert {
         // -------------6----
     }
 
-
     @After
     public void tearDown() throws Exception {
     }
@@ -91,6 +90,17 @@ public class TestBSTInsert {
         Assert.assertEquals(7, bstTree.find(7).getKey());
         bstTree.delete(7);
         Assert.assertEquals(null, bstTree.find(7));
+    }
+
+    @Test
+    public void deleteNodeWithTwoChildren() {
+        Assert.assertEquals(3, bstTree.find(3).getKey());
+        bstTree.delete(3);
+        Assert.assertEquals(null, bstTree.find(3));
+
+        Assert.assertEquals(5, bstTree.find(5).getKey());
+        bstTree.delete(5);
+        Assert.assertEquals(null, bstTree.find(5));
     }
 
 }

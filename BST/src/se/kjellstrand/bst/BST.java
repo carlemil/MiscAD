@@ -51,6 +51,9 @@ public class BST {
 
     public void delete(int key) {
         Node node = find(key);
+        if (node == null) {
+            return;
+        }
         // Deleting a leaf (node with no children): Deleting a leaf is easy, as
         // we can simply remove it from the tree.
         if (node.getLeft() == null && node.getRight() == null) {
@@ -80,7 +83,22 @@ public class BST {
         // its in-order predecessor node, R. Replace the value of N with the
         // value of R, then delete R.
         {
+            Node replace = findInOrderSuccessor(node);
+            int replaceKey = replace.getKey();
+            delete(replace.getKey());
+            node.setKey(replaceKey);
+        }
+    }
 
+    private Node findInOrderSuccessor(Node node) {
+        if (node.getRight() != null) {
+            Node replace = node.getRight();
+            while (replace.getLeft() != null) {
+                replace = replace.getLeft();
+            }
+            return replace;
+        } else {
+            return null;
         }
     }
 

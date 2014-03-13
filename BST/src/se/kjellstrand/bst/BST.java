@@ -16,17 +16,17 @@ public class BST {
     }
 
     public void insert(Node current, Node node) {
-        if (node.k < current.k) {
-            if (current.l == null) {
-                current.l = node;
+        if (node.getKey() < current.getKey()) {
+            if (current.getLeft() == null) {
+                current.setLeft(node);
             } else {
-                insert(current.l, node);
+                insert(current.getLeft(), node);
             }
         } else {
-            if (current.r == null) {
-                current.r = node;
+            if (current.getRight() == null) {
+                current.setRight(node);
             } else {
-                insert(current.r, node);
+                insert(current.getRight(), node);
             }
         }
     }
@@ -39,17 +39,27 @@ public class BST {
         if (node == null) {
             return null;
         }
-        if (node.k == key) {
+        if (node.getKey() == key) {
             return node;
-        } else if (node.k > key) {
-            return find(node.l, key);
-        } else if (node.k < key) {
-            return find(node.r, key);
+        } else if (node.getKey() > key) {
+            return find(node.getLeft(), key);
+        } else if (node.getKey() < key) {
+            return find(node.getRight(), key);
         }
         return null;
     }
 
     public void delete(int key) {
+        // Deleting a leaf (node with no children): Deleting a leaf is easy, as
+        // we can simply remove it from the tree.
+
+        // Deleting a node with one child: Remove the node and replace it with
+        // its child.
+
+        // Deleting a node with two children: Call the node to be deleted N. Do
+        // not delete N. Instead, choose either its in-order successor node or
+        // its in-order predecessor node, R. Replace the value of N with the
+        // value of R, then delete R.
 
     }
 
@@ -64,12 +74,12 @@ public class BST {
     }
 
     private void getInorderListOfKeys(ArrayList<Integer> list, Node node) {
-        if (node.l != null) {
-            getInorderListOfKeys(list, node.l);
+        if (node.getLeft() != null) {
+            getInorderListOfKeys(list, node.getLeft());
         }
-        list.add(node.k);
-        if (node.r != null) {
-            getInorderListOfKeys(list, node.r);
+        list.add(node.getKey());
+        if (node.getRight() != null) {
+            getInorderListOfKeys(list, node.getRight());
         }
     }
 
@@ -80,13 +90,13 @@ public class BST {
     }
 
     private void getPreOrderListOfKeys(ArrayList<Integer> list, Node node) {
-        list.add(node.k);
+        list.add(node.getKey());
 
-        if (node.l != null) {
-            getPreOrderListOfKeys(list, node.l);
+        if (node.getLeft() != null) {
+            getPreOrderListOfKeys(list, node.getLeft());
         }
-        if (node.r != null) {
-            getPreOrderListOfKeys(list, node.r);
+        if (node.getRight() != null) {
+            getPreOrderListOfKeys(list, node.getRight());
         }
     }
 

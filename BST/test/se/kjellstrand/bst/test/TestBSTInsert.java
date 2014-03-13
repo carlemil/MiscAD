@@ -61,17 +61,17 @@ public class TestBSTInsert {
 
     @Test
     public void find() {
-        Assert.assertEquals(1, bstTree.find(1).k);
-        Assert.assertEquals(2, bstTree.find(2).k);
-        Assert.assertEquals(3, bstTree.find(3).k);
-        Assert.assertEquals(6, bstTree.find(6).k);
-        Assert.assertEquals(7, bstTree.find(7).k);
+        Assert.assertEquals(1, bstTree.find(1).getKey());
+        Assert.assertEquals(2, bstTree.find(2).getKey());
+        Assert.assertEquals(3, bstTree.find(3).getKey());
+        Assert.assertEquals(6, bstTree.find(6).getKey());
+        Assert.assertEquals(7, bstTree.find(7).getKey());
         Assert.assertEquals(null, bstTree.find(8));
     }
 
     @Test
     public void delete() {
-        Assert.assertEquals(2, bstTree.find(2).k);
+        Assert.assertEquals(2, bstTree.find(2).getKey());
         bstTree.delete(2);
         Assert.assertEquals(null, bstTree.find(2));
     }

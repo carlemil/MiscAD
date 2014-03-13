@@ -60,15 +60,28 @@ public class BST {
             } else {
                 parent.setRight(null);
             }
-        }
-        // Deleting a node with one child: Remove the node and replace it with
-        // its child.
-
+        } else
+        // Deleting a node with one child: Remove the node and replace it
+        // with its child.
+        if (node.getLeft() != null ^ node.getRight() != null) {
+            Node parent = node.getParent();
+            Node child = node.getLeft();
+            if (child == null) {
+                child = node.getRight();
+            }
+            if (parent.getLeft() != null && parent.getLeft().equals(node)) {
+                parent.setLeft(child);
+            } else {
+                parent.setRight(child);
+            }
+        } else
         // Deleting a node with two children: Call the node to be deleted N. Do
         // not delete N. Instead, choose either its in-order successor node or
         // its in-order predecessor node, R. Replace the value of N with the
         // value of R, then delete R.
+        {
 
+        }
     }
 
     public int size() {

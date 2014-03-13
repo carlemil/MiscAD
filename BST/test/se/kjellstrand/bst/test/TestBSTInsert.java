@@ -88,7 +88,7 @@ public class TestBSTInsert {
         bstTree.delete(1);
         Assert.assertEquals(null, bstTree.find(1));
 
-        Assert.assertEquals(1, bstTree.find(7).getKey());
+        Assert.assertEquals(7, bstTree.find(7).getKey());
         bstTree.delete(7);
         Assert.assertEquals(null, bstTree.find(7));
     }

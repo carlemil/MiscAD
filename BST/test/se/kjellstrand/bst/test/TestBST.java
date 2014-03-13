@@ -11,11 +11,11 @@ import org.junit.Test;
 import se.kjellstrand.bst.BST;
 import se.kjellstrand.bst.Node;
 
-public class TestBSTInsert {
+public class TestBST {
 
     BST bstTree = new BST();
 
-    public TestBSTInsert() {
+    public TestBST() {
     }
 
     @Before

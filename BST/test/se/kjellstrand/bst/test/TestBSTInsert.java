@@ -27,7 +27,14 @@ public class TestBSTInsert {
         bstTree.insert(new Node(7));
         bstTree.insert(new Node(2));
         bstTree.insert(new Node(6));
+        // This is what the BST should
+        // look like after the inserts
+        // --------3---------
+        // ----1-------5-----
+        // ------2---4---7---
+        // -------------6----
     }
+
 
     @After
     public void tearDown() throws Exception {
@@ -50,7 +57,6 @@ public class TestBSTInsert {
     }
 
     @Test
-
     public void getPreorder() {
         ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
         Integer[] keys = list.toArray(new Integer[0]);
@@ -70,9 +76,21 @@ public class TestBSTInsert {
     }
 
     @Test
-    public void delete() {
+    public void deleteNodeWithNoChildren() {
         Assert.assertEquals(2, bstTree.find(2).getKey());
         bstTree.delete(2);
         Assert.assertEquals(null, bstTree.find(2));
     }
+
+    @Test
+    public void deleteNodeWithOneChild() {
+        Assert.assertEquals(1, bstTree.find(1).getKey());
+        bstTree.delete(1);
+        Assert.assertEquals(null, bstTree.find(1));
+
+        Assert.assertEquals(1, bstTree.find(7).getKey());
+        bstTree.delete(7);
+        Assert.assertEquals(null, bstTree.find(7));
+    }
+
 }

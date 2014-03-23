@@ -130,10 +130,7 @@ public class TestBST {
         bstTree.rotateLeft(bstTree.find(5));
         ArrayList<Integer> list = bstTree.getPostOrderListOfKeys();
         Integer[] keys = list.toArray(new Integer[0]);
-        System.out.println();
-        for (int i : keys) {
-            System.out.print(i + ", ");
-        }
+
         Assert.assertArrayEquals(new Integer[] {
                 2, 1, 4, 6, 5, 7, 3
         }, keys);
@@ -156,10 +153,7 @@ public class TestBST {
         bstTree.rotateLeft(bstTree.find(3));
         ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
         Integer[] keys = list.toArray(new Integer[0]);
-        System.out.println();
-        for (int i : keys) {
-            System.out.print(i + ", ");
-        }
+
         Assert.assertArrayEquals(new Integer[] {
                 5, 3, 1, 2, 4, 7, 6
         }, keys);
@@ -170,10 +164,7 @@ public class TestBST {
         bstTree.rotateLeft(bstTree.find(6));
         ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
         Integer[] keys = list.toArray(new Integer[0]);
-        System.out.println();
-        for (int i : keys) {
-            System.out.print(i + ", ");
-        }
+
         Assert.assertArrayEquals(new Integer[] {
                 3, 1, 2, 5, 4, 7, 6
         }, keys);
@@ -184,10 +175,7 @@ public class TestBST {
         bstTree.rotateLeft(bstTree.find(7));
         ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
         Integer[] keys = list.toArray(new Integer[0]);
-        System.out.println();
-        for (int i : keys) {
-            System.out.print(i + ", ");
-        }
+
         Assert.assertArrayEquals(new Integer[] {
                 3, 1, 2, 5, 4, 7, 6
         }, keys);
@@ -198,12 +186,22 @@ public class TestBST {
         bstTree.rotateLeft(bstTree.find(1));
         ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
         Integer[] keys = list.toArray(new Integer[0]);
-        System.out.println();
-        for (int i : keys) {
-            System.out.print(i + ", ");
-        }
+
         Assert.assertArrayEquals(new Integer[] {
                 3, 2, 1, 5, 4, 7, 6
+        }, keys);
+    }
+
+    @Test
+    public void multipleRotateLeft() {
+        bstTree.rotateLeft(bstTree.find(5));
+        bstTree.rotateLeft(bstTree.find(3));
+        bstTree.rotateLeft(bstTree.find(1));
+        ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
+        Integer[] keys = list.toArray(new Integer[0]);
+
+        Assert.assertArrayEquals(new Integer[] {
+                7, 3, 2, 1, 5, 4, 6
         }, keys);
     }
 }

@@ -164,4 +164,46 @@ public class TestBST {
                 5, 3, 1, 2, 4, 7, 6
         }, keys);
     }
+
+    @Test
+    public void rotateNodeWithNoChildrenLeft() {
+        bstTree.rotateLeft(bstTree.find(6));
+        ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
+        Integer[] keys = list.toArray(new Integer[0]);
+        System.out.println();
+        for (int i : keys) {
+            System.out.print(i + ", ");
+        }
+        Assert.assertArrayEquals(new Integer[] {
+                3, 1, 2, 5, 4, 7, 6
+        }, keys);
+    }
+
+    @Test
+    public void rotateNodeWithOneLeftChildLeft() {
+        bstTree.rotateLeft(bstTree.find(7));
+        ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
+        Integer[] keys = list.toArray(new Integer[0]);
+        System.out.println();
+        for (int i : keys) {
+            System.out.print(i + ", ");
+        }
+        Assert.assertArrayEquals(new Integer[] {
+                3, 1, 2, 5, 4, 7, 6
+        }, keys);
+    }
+
+    @Test
+    public void rotateNodeWithOneRightChildLeft() {
+        bstTree.rotateLeft(bstTree.find(1));
+        ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
+        Integer[] keys = list.toArray(new Integer[0]);
+        System.out.println();
+        for (int i : keys) {
+            System.out.print(i + ", ");
+        }
+        Assert.assertArrayEquals(new Integer[] {
+                3, 2, 1, 5, 4, 7, 6
+        }, keys);
+    }
 }

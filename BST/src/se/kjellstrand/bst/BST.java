@@ -126,6 +126,11 @@ public class BST {
             b = c.getLeft();
         }
 
+        // a have no children, no rotation possible
+        if (c == null && b == null) {
+            return;
+        }
+
         if (a == p.getLeft()) {
             p.setLeft(c);
         } else {

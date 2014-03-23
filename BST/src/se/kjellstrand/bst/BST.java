@@ -4,13 +4,19 @@ import java.util.ArrayList;
 
 public class BST {
 
-    private Node root;
+    private Node root = new Node(0);
+
+    private Node getRoot() {
+        // Construct needed to handle rotations that depends on having a parent
+        // for all nodes, even root.
+        return root.getLeft();
+    }
 
     public void insert(Node node) {
-        if (root == null) {
-            root = node;
+        if (getRoot() == null) {
+            root.setLeft(node);
         } else {
-            insert(root, node);
+            insert(getRoot(), node);
         }
     }
 
@@ -33,7 +39,7 @@ public class BST {
     }
 
     public Node find(int key) {
-        return find(root, key);
+        return find(getRoot(), key);
     }
 
     private Node find(Node node, int key) {
@@ -104,33 +110,37 @@ public class BST {
     }
 
     public int size() {
-        return root.size();
+        return getRoot().size();
     }
 
-    public void rotateLeft(Node node) {
-        Node p = node.getParent();
-        if (node == p.getLeft()) {
-            p.setLeft(node.getRight());
+    public void rotateLeft(Node a) {
+        // -----a-----
+        // ---o---c---
+        // --o-o-b-o--
+
+        Node p = a.getParent();
+        Node c = a.getRight();
+
+        Node b = null;
+        if (c != null) {
+            b = c.getLeft();
+        }
+
+        if (a == p.getLeft()) {
+            p.setLeft(c);
         } else {
-            p.setRight(node.getRight());
+            p.setRight(c);
         }
-        Node r = node.getRight();
-        Node l = node.getLeft();
-        Node rl = null;
-        if (r != null) {
-            rl = r.getLeft();
-        }
-        if (l != null) {
-            l.setRight(rl);
-        }
-        if (r != null) {
-            r.setLeft(node);
+
+        a.setRight(b);
+        if (c != null) {
+            c.setLeft(a);
         }
     }
 
     public ArrayList<Integer> getInOrderListOfKeys() {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        getInOrderListOfKeys(list, root);
+        getInOrderListOfKeys(list, getRoot());
         return list;
     }
 
@@ -146,7 +156,7 @@ public class BST {
 
     public ArrayList<Integer> getPreOrderListOfKeys() {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        getPreOrderListOfKeys(list, root);
+        getPreOrderListOfKeys(list, getRoot());
         return list;
     }
 
@@ -163,7 +173,7 @@ public class BST {
 
     public ArrayList<Integer> getPostOrderListOfKeys() {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        getPostOrderListOfKeys(list, root);
+        getPostOrderListOfKeys(list, getRoot());
         return list;
     }
 

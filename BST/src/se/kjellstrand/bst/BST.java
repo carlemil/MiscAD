@@ -1,4 +1,3 @@
-
 package se.kjellstrand.bst;
 
 import java.util.ArrayList;
@@ -19,12 +18,14 @@ public class BST {
         if (node.getKey() < current.getKey()) {
             if (current.getLeft() == null) {
                 current.setLeft(node);
+                node.setParent(current);
             } else {
                 insert(current.getLeft(), node);
             }
         } else {
             if (current.getRight() == null) {
                 current.setRight(node);
+                node.setParent(current);
             } else {
                 insert(current.getRight(), node);
             }
@@ -106,19 +107,40 @@ public class BST {
         return root.size();
     }
 
+    public void rotateLeft(Node node) {
+        Node p = node.getParent();
+        if (node == p.getLeft()) {
+            p.setLeft(node.getRight());
+        } else {
+            p.setRight(node.getRight());
+        }
+        Node r = node.getRight();
+        Node l = node.getLeft();
+        Node rl = null;
+        if (r != null) {
+            rl = r.getLeft();
+        }
+        if (l != null) {
+            l.setRight(rl);
+        }
+        if (r != null) {
+            r.setLeft(node);
+        }
+    }
+
     public ArrayList<Integer> getInOrderListOfKeys() {
         ArrayList<Integer> list = new ArrayList<Integer>();
-        getInorderListOfKeys(list, root);
+        getInOrderListOfKeys(list, root);
         return list;
     }
 
-    private void getInorderListOfKeys(ArrayList<Integer> list, Node node) {
+    private void getInOrderListOfKeys(ArrayList<Integer> list, Node node) {
         if (node.getLeft() != null) {
-            getInorderListOfKeys(list, node.getLeft());
+            getInOrderListOfKeys(list, node.getLeft());
         }
         list.add(node.getKey());
         if (node.getRight() != null) {
-            getInorderListOfKeys(list, node.getRight());
+            getInOrderListOfKeys(list, node.getRight());
         }
     }
 

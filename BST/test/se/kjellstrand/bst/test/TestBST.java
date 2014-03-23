@@ -1,4 +1,3 @@
-
 package se.kjellstrand.bst.test;
 
 import java.util.ArrayList;
@@ -84,6 +83,20 @@ public class TestBST {
     }
 
     @Test
+    public void isParentCorrect() {
+        checkParent(bstTree.find(1));
+        checkParent(bstTree.find(2));
+        checkParent(bstTree.find(4));
+        checkParent(bstTree.find(5));
+    }
+
+    private void checkParent(Node n) {
+        Node p = n.getParent();
+        Assert.assertNotNull(p);
+        Assert.assertTrue(n.equals(p.getLeft()) || n.equals(p.getRight()));
+    }
+
+    @Test
     public void deleteNodeWithNoChildren() {
         Assert.assertEquals(2, bstTree.find(2).getKey());
         bstTree.delete(2);
@@ -112,4 +125,26 @@ public class TestBST {
         Assert.assertEquals(null, bstTree.find(5));
     }
 
+    @Test
+    public void rotateNodeLeft() {
+        bstTree.rotateLeft(bstTree.find(3));
+        ArrayList<Integer> list = bstTree.getPreOrderListOfKeys();
+        Integer[] keys = list.toArray(new Integer[0]);
+
+        Assert.assertArrayEquals(new Integer[] {
+                2, 1, 4, 6, 5, 7, 3
+        }, keys);
+        // This is what the BST should
+        // look like before the rotation
+        // --------3---------
+        // ----1-------5-----
+        // ------2---4---7---
+        // -------------6----
+        // This is what the BST should
+        // look like after the rotation
+        // --------3---------
+        // ----1-------7-----
+        // ------2---5-------
+        // ---------4-6------
+    }
 }
